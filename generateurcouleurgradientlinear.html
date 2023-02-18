@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="generateurcouleur.ss"> -->
+  </head>
+  <body onload="addCouleur();">
+    <style>
+      .btn {
+        background: none;
+        color: #111;
+        padding: 15px 60px;
+        font-size: 1em;
+        margin: 20px auto;
+        max-width: 200px;
+        outline: none;
+        display: block;
+        border: 2px solid #111;
+        cursor: pointer;
+      }
+      .box {
+        width: 100%;
+        height: calc(100vh - 110px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #f00;
+        border: 2px solid #fff;
+        color: #fff;
+        font-size: 1.5em;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+    <button class="btn" onclick="addCouleur();">recharger</button>
+
+    <section class="container">
+      <div class="top">
+        <a href="#"></a>
+      </div>
+    </section>
+    <script>
+      for (let i = 1; i <= 100; i++) {
+        const box = document.createElement("div");
+        box.classList.add("box");
+        document.querySelector(".container").appendChild(box);
+      }
+
+      const btn = document.querySelector(".btn");
+      const couleurBlock = document.querySelectorAll(".box");
+
+      function gradientGenerator() {
+        var r = Math.floor(Math.random() * 255);
+        var g = Math.floor(Math.random() * 255);
+        var b = Math.floor(Math.random() * 255);
+
+        var rr = Math.floor(Math.random() * 255);
+        var gg = Math.floor(Math.random() * 255);
+
+        var deg = Math.floor(Math.random() * 360);
+
+        var color = `linear-gradient(rgb(${r},${g},${b}), rgb(${rr},${gg},${b}))`;
+
+        for (var i = 0; i < color; i++) {
+          var randomcouleur = Math.floor(Math.random() * color.length);
+          color += chars.substring(randomcouleur, randomcouleur + 1);
+        }
+        return color;
+
+        //   docum.box.innerHTML = `<bo>${color}</bo>;
+      }
+      // setInterval(gradientGenerator, 1000);
+
+      function addCouleur() {
+        couleurBlock.forEach((e) => {
+          var newCouleur = gradientGenerator();
+          e.style.background = newCouleur;
+          e.innerHTML = newCouleur;
+        });
+      }
+    </script>
+  </body>
+</html>
